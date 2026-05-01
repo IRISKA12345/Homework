@@ -1,0 +1,65 @@
+def find_min_period(s):
+    n = len(s)
+    for period in range(1, n + 1):
+        if n % period == 0: 
+            if s == s[:period] * (n // period):
+                return period
+    return n
+
+n = int(input().strip()) 
+input() 
+
+for i in range(n):
+    s = input().strip() 
+    print(find_min_period(s))
+    if i != n - 1:
+        input() 
+        print() 
+
+
+def count_palindromes(s):
+    n = len(s)
+    count = 0
+    
+    for i in range(n):          
+        for j in range(i, n):    
+            left = i
+            right = j
+            is_pal = True
+            
+            while left < right:
+                if s[left] != s[right]:
+                    is_pal = False
+                    break
+                left += 1
+                right -= 1
+            
+            if is_pal:
+                count += 1
+    
+    return count
+
+s = input().strip()
+print(count_palindromes(s))
+
+
+
+s = input().strip()
+n = len(s)
+
+a = []
+for k in range(n):
+    b = s[k:] + s[:k]
+    a.append(b)
+
+a.sort()
+
+for i, c in enumerate(a):
+    if c == s:
+        p = i + 1
+        break
+
+d = ''.join(c[-1] for c in a)
+
+print(p)
+print(d)
